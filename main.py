@@ -1,11 +1,10 @@
 from Details import spy
 from steganography.steganography import Steganography
 from datetime import datetime
-from Details import Spy,ChatMessage
+from Details import Spy,ChatMessage,Friends
 
 STATUS_MESSAGES = ['My name is Bond, James Bond', 'Shaken, not stirred.', 'Stand Tall and Smile onn','Happy to Help']
 
-Friends = []
 
 print "Hello! Let\'s get started"
 
@@ -47,7 +46,7 @@ def add_status(current_status_message):
         print 'The option you chose is not valid! Press either y or n.'
 
     if updated_status_message:
-        print 'Your updated status message is: %s' % (updated_status_message)
+        print 'Your updated status message is: %s \n' % (updated_status_message)
     else:
         print 'You did not update your status message'
 
@@ -85,7 +84,7 @@ def select_a_friend():
     for friend in Friends:
         print '%d. %s aged %d with rating %.2f is online' % (item_number + 1, friend.name,
                                                              friend.age,
-                                                             friend['rating'])
+                                                             friend.rating)
         item_number = item_number + 1
 
     friend_choice = input("Choose from your friends")
@@ -109,7 +108,7 @@ def send_message():
         "sent_by_me": True
     }
 
-    Friends[friend_choice]['chats'].append(new_chat)
+    Friends[friend_choice].chats.append(new_chat)
 
     print "Your secret message image is ready!"
 
@@ -127,9 +126,8 @@ def read_message():
         "sent_by_me": False
     }
 
-    Friends[sender]['chats'].append(new_chat)
+    Friends[sender].chats.append(new_chat)
 
-    print "Your secret message has been saved!"
 
 
 def start_chat(spy):
@@ -139,13 +137,12 @@ def start_chat(spy):
 
     if spy.age > 12 and spy.age < 50:
 
-        print "Authentication complete. Welcome " + spy.name + " age: " + str(spy.age) + " and rating of: " + str(
-            spy.rating) + " Proud to have you onboard"
+        print "Authentication complete. Welcome " + spy.name + " age: " +str(spy.age) + " and rating of: " + str(spy.rating) + " Proud to have you onboard"
 
         show_menu = True
 
         while show_menu:
-            menu_choices = "What do you want to do? \n 1. Add a status update \n 2. Add a friend \n 3. Send a secret message \n 4. Read a secret message \n 5. Read Chats from a user \n 6. Close Application \n"
+            menu_choices = "\n What do you want to do? \n 1. Add a status update \n 2. Add a friend \n 3. Send a secret message \n 4. Read a secret message \n 5. Read Chats from a user \n 6. Close Application \n"
             menu_choice = input(menu_choices)
 
             # Set status
@@ -176,10 +173,10 @@ else:
         'is_online': False
     }
 
-    spy['name'] = input("Welcome to spy chat, you must tell me your spy name first: ")
+    spy['name'] = raw_input("Welcome to spy chat, you must tell me your spy name first: ")
 
     if len(spy['name']) > 0:
-        spy['salutation'] = input("Should I call you Mr. or Ms.?: ")
+        spy['salutation'] = raw_input("Should I call you Mr. or Ms.?: ")
 
         spy['age'] = input("What is your age?")
 

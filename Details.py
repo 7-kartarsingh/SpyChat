@@ -9,7 +9,6 @@ class Spy:
     self.chats = []
     self.current_status_message = None
 
-
 spy = Spy("BOND","Mr.",29,4.6)
 
 friend_one = Spy("Bob","Mr.", 23, 4.7)
